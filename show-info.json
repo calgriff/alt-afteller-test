@@ -1,0 +1,23 @@
+{
+  "_readme": "Optional presentation data per show. Keys are the scraped English title WITHOUT the language suffix, matched case-insensitively ('Habitat Earth (EN)' matches key 'Habitat Earth'). All fields are optional: displayTitle (Dutch title shown on screen), description (shown under the countdown and under the next-show listing), age (e.g. 'Vanaf 8 jaar'). Unknown shows fall back to the scraped title with no description. Edit freely — the page reloads hourly, so changes appear within the hour (or immediately on refresh).",
+
+  "Habitat Earth": {
+    "displayTitle": "Netwerk Aarde",
+    "age": "Vanaf 8 jaar",
+    "description": "Ontdek wat het betekent om te leven in een wereld waarin alles met elkaar verbonden is, van de allerkleinste organismen in de bodem tot de grootste walvissen."
+  },
+  "Living Worlds": {
+    "displayTitle": "Tekens van Leven",
+    "age": "Vanaf 8 jaar",
+    "description": "Ga in de nieuwste Planetariumvoorstelling op zoek naar herkenbare sporen van leven elders in het heelal."
+  },
+  "Planeet Sok": {
+    "age": "Vanaf 4 jaar"
+  },
+  "Live: Expedition Solar System": {
+    "displayTitle": "Live: Expeditie zonnestelsel"
+  },
+  "Live: Journey Through the Universe": {
+    "displayTitle": "Live: Reis door het heelal"
+  }
+}

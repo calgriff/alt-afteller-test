@@ -2,81 +2,154 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<title>Afteller | ARTIS (fix demo)</title>
+<title>Afteller | ARTIS Planetarium</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0b1421;
-    --panel: #101d30;
-    --accent: #6fd3c7;
-    --accent-dim: #2c4a52;
-    --text: #eef4f7;
-    --text-dim: #9fb2c3;
-    --danger: #ff8a5b;
+    --bg: #060b18;
+    --text: #ffffff;
   }
   * { box-sizing: border-box; }
+  /* Design is authored for a 1080x1920 portrait screen.
+     1rem = 10px at 1080 wide; everything scales proportionally. */
+  html { font-size: calc(100vw / 108); }
   html, body {
     margin: 0; padding: 0; height: 100%;
     background: var(--bg); color: var(--text);
-    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: "Archivo", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
-  body {
-    display: flex; flex-direction: column; align-items: center;
-    padding: 32px 24px 12px;
-    min-height: 100vh;
-  }
-  .debug-bar {
-    width: 100%; max-width: 900px;
-    background: var(--panel);
-    border: 1px solid var(--accent-dim);
-    border-radius: 10px;
-    padding: 12px 16px;
-    margin-bottom: 24px;
-    font-size: 13px;
-    color: var(--text-dim);
-    display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;
-  }
-  .debug-bar strong { color: var(--accent); }
-  .debug-bar code {
-    background: #0006; padding: 1px 6px; border-radius: 4px; color: var(--text);
-  }
+  body { overflow: hidden; }
+
   .c-narrowcasting-countdown {
-    width: 100%; max-width: 900px;
-    background: var(--panel);
-    border-radius: 16px;
-    padding: 40px 36px;
-    text-align: center;
+    display: flex; flex-direction: column;
+    height: 100vh;
+    padding: 2rem 6rem 2.5rem;
   }
+
+  /* ---- highlighted (next) show ---------------------------------------- */
   .narrowcasting-countdown__highlight { display: none; }
   .narrowcasting-countdown__highlight:not(.narrowcasting-countdown__highlight--is-hidden) { display: block; }
-  .narrowcasting-countdown__caption {
-    margin: 0 0 6px; color: var(--text-dim);
-    font-size: 16px; letter-spacing: .02em;
+
+  .highlight__over {
+    margin: 0;
+    font-size: 11.5rem; font-weight: 700;
+    text-transform: uppercase; line-height: 1.05;
+    letter-spacing: .005em;
   }
-  .narrowcasting-countdown__caption--bold { font-weight: 700; color: var(--text); }
-  .narrowcasting-countdown__time {
-    font-size: 56px; font-weight: 800; color: var(--accent);
+  .highlight__time {
+    margin: 4.5rem 0 6rem -0.4rem;
+    font-size: 25.5rem; font-weight: 200;
+    line-height: 1.05;
     font-variant-numeric: tabular-nums;
+    letter-spacing: .2em;
+    white-space: nowrap;
   }
-  .narrowcasting-countdown--less-than-hour .narrowcasting-countdown__time { color: var(--danger); }
-  .narrowcasting-countdown__title { font-size: 32px; margin: 8px 0 16px; }
+  /* countdown longer than an hour renders HH:MM:SS — shrink so it fits */
+  .narrowcasting-countdown__highlight:not(.narrowcasting-countdown--less-than-hour) .highlight__time {
+    font-size: 16rem; letter-spacing: .1em;
+  }
+  .highlight__minuten {
+    margin: 0;
+    font-size: 11rem; font-weight: 300;
+    text-transform: uppercase; line-height: 1.15;
+    letter-spacing: .005em;
+  }
+  .highlight__title {
+    margin: 0;
+    font-size: 12rem; font-weight: 700;
+    text-transform: uppercase; line-height: 1.08;
+    letter-spacing: .01em;
+    overflow-wrap: anywhere;
+  }
+  .highlight__meta {
+    display: flex; justify-content: space-between; gap: 2rem;
+    margin-top: 1.4rem;
+    font-size: 1.8rem; font-weight: 600;
+    letter-spacing: .22em; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .highlight__meta:empty { display: none; }
+  .highlight__description {
+    margin: 3rem 0 0;
+    font-size: 3.3rem; font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: .01em;
+  }
+
+  /* ---- empty state ----------------------------------------------------- */
   .narrowcasting-countdown__empty { display: none; }
   .narrowcasting-countdown__empty:not(.narrowcasting-countdown__empty--is-hidden) { display: block; }
-  .narrowcasting-countdown__other {
-    width: 100%; max-width: 900px; margin-top: 24px;
-    display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  .narrowcasting-countdown__empty h2 {
+    margin: 0;
+    font-size: 7.5rem; font-weight: 700;
+    text-transform: uppercase; line-height: 1.15;
   }
-  .narrowcasting-countdown__list { list-style: none; padding: 0; margin: 0; flex: 1; }
-  .narrowcasting-countdown__list-item {
-    display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--accent-dim);
-    opacity: .7; font-size: 14px;
+
+  /* ---- bottom cluster: divider / upcoming list / clock ------------------ */
+  .countdown__spacer { flex: 1; }
+
+  .countdown__divider {
+    height: .6rem;
+    background-image: repeating-linear-gradient(90deg,
+      var(--text) 0 1.5rem, transparent 1.5rem 2.5rem);
+    margin-bottom: 2.8rem;
   }
-  .narrowcasting-countdown__list-item-time { color: var(--accent); font-weight: 700; min-width: 44px; }
-  .narrowcasting-countdown__list-item-title { margin: 0; font-size: 15px; }
+  .countdown--is-empty .countdown__divider,
+  .countdown--is-empty .narrowcasting-countdown__list { display: none; }
+
+  .narrowcasting-countdown__list { list-style: none; margin: 0; padding: 0; }
+  .event {
+    display: flex; align-items: flex-start; gap: 5rem;
+    margin-bottom: 2.5rem;
+  }
+  .event--is-hidden { display: none; }
+  .event__time {
+    margin: 0;
+    font-size: 5rem; font-weight: 700;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .event__body { width: fit-content; }
+  .event__title {
+    margin: 0;
+    font-size: 5.2rem; font-weight: 700;
+    text-transform: uppercase; line-height: 1.05;
+    letter-spacing: .005em;
+  }
+  .event__description {
+    margin: .6rem 0 0;
+    font-size: 1.9rem; font-weight: 400;
+    line-height: 1.4;
+    text-align: center;
+  }
+
   .narrowcasting-countdown__clock {
-    font-size: 28px; font-weight: 700; color: var(--text);
-    font-variant-numeric: tabular-nums; margin: 0;
+    margin: 1.5rem 0 0;
+    align-self: center;
+    font-size: 3.8rem; font-weight: 500;
+    font-variant-numeric: tabular-nums;
   }
+
+  /* ---- debug/QA harness (only visible with URL params, see README) ----- */
+  .debug-bar {
+    position: fixed; top: .8rem; right: .8rem; z-index: 998;
+    max-width: 46rem;
+    background: rgba(10, 24, 44, .92);
+    border: 1px solid #2c4a52;
+    border-radius: .8rem;
+    padding: 1rem 1.4rem;
+    font-size: 1.4rem; line-height: 1.5;
+    color: #9fb2c3;
+  }
+  .debug-bar[hidden] { display: none; }
+  .debug-bar strong { color: #6fd3c7; }
+  .debug-bar code {
+    background: #0006; padding: 0 .5rem; border-radius: .4rem; color: #fff;
+  }
+
   .flash {
     position: fixed; inset: 0; background: #fff; opacity: 0;
     pointer-events: none; z-index: 999;
@@ -87,8 +160,8 @@
 </head>
 <body>
 
-<div class="debug-bar">
-  <div><strong>Debug/QA harness</strong> &mdash; not part of the real artis.nl page.</div>
+<div class="debug-bar" id="debug-bar" hidden>
+  <div><strong>Debug/QA harness</strong></div>
   <div>Fake time: <code id="dbg-now">--:--:--</code></div>
   <div>Next reload in: <code id="dbg-reload">--</code></div>
   <div>Fix delay: <code id="dbg-fixdelay">--</code>s</div>
@@ -96,22 +169,23 @@
   <div>Params: <code>?fakeNow=13:59:50&amp;timeScale=10&amp;fixDelay=3</code></div>
 </div>
 
-<div class="c-narrowcasting-countdown c-narrowcasting narrowcasting--portrait narrowcasting-countdown--less-than-hour"
-     data-date="" js-hook-narrowcasting-countdown>
+<main class="c-narrowcasting-countdown c-narrowcasting narrowcasting--portrait"
+      js-hook-narrowcasting-countdown>
 
   <div id="highlights-container"></div>
 
   <div class="narrowcasting-countdown__empty narrowcasting-countdown__empty--is-hidden" js-hook-narrowcasting-countdown-empty>
-    <h2 class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold narrowcasting-countdown__title">
-      De shows in het Planetarium zijn afgelopen voor vandaag.
-    </h2>
+    <h2>De shows in het Planetarium zijn afgelopen voor vandaag.</h2>
   </div>
 
-  <div class="narrowcasting-countdown__other">
-    <ul class="narrowcasting-countdown__list" id="list-container"></ul>
-    <p class="narrowcasting-countdown__clock" js-hook-narrowcasting-countdown-clock>--:--</p>
-  </div>
-</div>
+  <div class="countdown__spacer"></div>
+
+  <div class="countdown__divider"></div>
+
+  <ul class="narrowcasting-countdown__list" id="list-container"></ul>
+
+  <p class="narrowcasting-countdown__clock" js-hook-narrowcasting-countdown-clock>--:--</p>
+</main>
 
 <div class="flash" id="flash"></div>
 <script src="countdown.js"></script>
