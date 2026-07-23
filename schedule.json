@@ -1,0 +1,14 @@
+{
+  "date": "2026-07-23",
+  "generatedAt": "2026-07-23T00:00:00.000Z",
+  "source": "https://www.artis.nl/en/artis-zoo/daily-schedule",
+  "shows": [
+    { "title": "Planeet Sok (NL)", "starttime": "11:00", "endtime": "11:25" },
+    { "title": "Live: Universal Water", "starttime": "12:00", "endtime": "12:30" },
+    { "title": "Planeet Sok (NL)", "starttime": "13:00", "endtime": "13:30" },
+    { "title": "Live: Expedition Solar System (NL)", "starttime": "14:00", "endtime": "14:30" },
+    { "title": "Live: Journey Through the Universe (NL+EN)", "starttime": "15:00", "endtime": "15:30" },
+    { "title": "Habitat Earth (EN)", "starttime": "16:00", "endtime": "16:30" },
+    { "title": "Living Worlds (EN)", "starttime": "17:00", "endtime": "17:30" }
+  ]
+}
