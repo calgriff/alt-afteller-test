@@ -4,11 +4,12 @@
 // lists everything happening at the zoo that day, not just the Planetarium).
 //
 // Runs under Node 20+ (has global fetch). Intended to be run by the
-// GitHub Actions workflow in .github/workflows/update-schedule.yml, which has
-// unrestricted internet access (unlike this sandbox, which can't reach
-// artis.nl at all — this script has NOT been run end-to-end against the live
-// site yet; check the first workflow run's logs and adjust the regex below
-// if it comes back empty).
+// GitHub Actions workflow in .github/workflows/update-schedule.yml.
+//
+// Verified against the live page's actual rendered markup: each schedule
+// item's title/category/time/location land on their own separate lines
+// (the source HTML is pretty-printed with real newlines around each piece
+// of text), not all crammed onto one line — see parseSchedule below.
 
 const SOURCE_URL = "https://www.artis.nl/en/artis-zoo/daily-schedule";
 
@@ -26,38 +27,42 @@ function htmlToRoughText(html) {
         .replace(/&#x27;|&#39;/g, "'")
         .replace(/&quot;/g, '"')
         .replace(/&nbsp;/g, " ")
+        .replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+        .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(parseInt(dec, 10)))
         .replace(/[ \t]+/g, " ")
         .split("\n")
         .map((l) => l.trim())
         .filter(Boolean);
 }
 
-// Matches a line like: "show • gratis 11.00 - 11.25 ARTIS-Planetarium"
-// or: "show 12.00 - 12.30 ARTIS-Planetarium"
-const ENTRY_RE = /^(show|ARTIS talk|activity|guided tour|special program|audio tour|workshop|lecture series|lecture|exhibition|water)\b.*?(\d{1,2})\.(\d{2})\s*-\s*(\d{1,2})\.(\d{2})\s+(.+)$/i;
+// The live page's markup is pretty-printed with real newlines around each
+// piece of text, so each schedule item's fields land on their own separate
+// lines (verified against the actual rendered HTML), not all on one line:
+//   Planeet Sok (NL)          <- title
+//   show • gratis             <- category (+ optional bullet/tag)
+//   11.00 - 11.25             <- time range, alone on its line
+//   ARTIS-Planetarium         <- location
+const CATEGORY_RE = /^(show|ARTIS talk|activity|guided tour|special program|audio tour|workshop|lecture series|lecture|exhibition|water)\b/i;
+const TIME_RE = /^(\d{1,2})\.(\d{2})\s*-\s*(\d{1,2})\.(\d{2})$/;
 
 function parseSchedule(lines) {
     const entries = [];
-    for (let i = 0; i < lines.length; i++) {
-        const m = lines[i].match(ENTRY_RE);
-        if (!m) continue;
-        const [, category, sh, sm, eh, em, location] = m;
-        if (!/planetarium/i.test(location)) continue;
-        if (!/^show$/i.test(category.trim())) continue; // exclude "ARTIS talk" etc.
+    for (let i = 1; i < lines.length - 2; i++) {
+        const catMatch = lines[i].match(CATEGORY_RE);
+        if (!catMatch) continue;
+        const category = catMatch[1];
+        const timeMatch = lines[i + 1] && lines[i + 1].match(TIME_RE);
+        if (!timeMatch) continue;
+        const location = lines[i + 2];
+        if (!location || !/planetarium/i.test(location)) continue;
+        if (!/^show$/i.test(category)) continue; // exclude "ARTIS talk" etc.
 
-        // title is usually the nearest preceding non-empty line that isn't
-        // itself a schedule-entry line
-        let title = null;
-        for (let j = i - 1; j >= 0 && j >= i - 3; j--) {
-            if (!ENTRY_RE.test(lines[j])) {
-                title = lines[j].replace(/^##\s*/, "").trim();
-                break;
-            }
-        }
-        if (!title) continue;
+        const title = lines[i - 1];
+        if (!title || CATEGORY_RE.test(title) || TIME_RE.test(title)) continue;
 
+        const [, sh, sm, eh, em] = timeMatch;
         entries.push({
-            title,
+            title: title.trim(),
             starttime: `${sh.padStart(2, "0")}:${sm}`,
             endtime: `${eh.padStart(2, "0")}:${em}`,
         });

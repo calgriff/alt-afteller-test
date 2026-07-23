@@ -32,14 +32,12 @@ Browser (visiting the GitHub Pages site)
   -> runs the same countdown/reload-fix logic as before
 ```
 
-**Caveat:** `scrape.mjs`'s parsing logic was written by inspecting the page's
-rendered text (this sandbox can't reach artis.nl to test the real HTML
-directly). The regex is reasonably tolerant of formatting, but the first
-real run is worth checking — go to the repo's **Actions** tab, open the
-"Update ARTIS schedule" run, and check the "Run scraper" step's log. If it
-prints "No Planetarium shows parsed", it dumps the first 60 lines of
-extracted text so you (or I, if you paste it back to me) can adjust the
-regex in `scrape.mjs`.
+`scrape.mjs`'s parsing logic has been verified against the live page's
+actual HTML: each schedule item's title, category, time range, and location
+land on their own separate lines, which is what the parser expects. If
+ARTIS ever restructures the page and the workflow's "Run scraper" step logs
+"No Planetarium shows parsed", it dumps the first 60 lines of extracted
+text — paste that back and the parser can be adjusted to match.
 
 ## Files
 
