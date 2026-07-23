@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Afteller | ARTIS (fix demo)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --bg: #0b1421;
+    --panel: #101d30;
+    --accent: #6fd3c7;
+    --accent-dim: #2c4a52;
+    --text: #eef4f7;
+    --text-dim: #9fb2c3;
+    --danger: #ff8a5b;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: var(--bg); color: var(--text);
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  body {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 32px 24px 12px;
+    min-height: 100vh;
+  }
+  .debug-bar {
+    width: 100%; max-width: 900px;
+    background: var(--panel);
+    border: 1px solid var(--accent-dim);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: var(--text-dim);
+    display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;
+  }
+  .debug-bar strong { color: var(--accent); }
+  .debug-bar code {
+    background: #0006; padding: 1px 6px; border-radius: 4px; color: var(--text);
+  }
+  .c-narrowcasting-countdown {
+    width: 100%; max-width: 900px;
+    background: var(--panel);
+    border-radius: 16px;
+    padding: 40px 36px;
+    text-align: center;
+  }
+  .narrowcasting-countdown__highlight { display: none; }
+  .narrowcasting-countdown__highlight:not(.narrowcasting-countdown__highlight--is-hidden) { display: block; }
+  .narrowcasting-countdown__caption {
+    margin: 0 0 6px; color: var(--text-dim);
+    font-size: 16px; letter-spacing: .02em;
+  }
+  .narrowcasting-countdown__caption--bold { font-weight: 700; color: var(--text); }
+  .narrowcasting-countdown__time {
+    font-size: 56px; font-weight: 800; color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .narrowcasting-countdown--less-than-hour .narrowcasting-countdown__time { color: var(--danger); }
+  .narrowcasting-countdown__title { font-size: 32px; margin: 8px 0 16px; }
+  .narrowcasting-countdown__tags {
+    list-style: none; display: flex; justify-content: center; gap: 10px;
+    padding: 0; margin: 0 0 16px; flex-wrap: wrap;
+  }
+  .narrowcasting-countdown__tag-item {
+    background: var(--accent-dim); color: var(--text);
+    padding: 4px 12px; border-radius: 999px; font-size: 13px;
+  }
+  .narrowcasting-countdown__description { color: var(--text-dim); max-width: 640px; margin: 0 auto; line-height: 1.5; }
+  .narrowcasting-countdown__empty { display: none; }
+  .narrowcasting-countdown__empty:not(.narrowcasting-countdown__empty--is-hidden) { display: block; }
+  .narrowcasting-countdown__other {
+    width: 100%; max-width: 900px; margin-top: 24px;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+  }
+  .narrowcasting-countdown__list { list-style: none; padding: 0; margin: 0; flex: 1; }
+  .narrowcasting-countdown__list-item {
+    display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--accent-dim);
+    opacity: .7; font-size: 14px;
+  }
+  .narrowcasting-countdown__list-item-time { color: var(--accent); font-weight: 700; min-width: 44px; }
+  .narrowcasting-countdown__list-item-title { margin: 0 0 2px; font-size: 15px; }
+  .narrowcasting-countdown__list-item-description { margin: 0; color: var(--text-dim); font-size: 12px; }
+  .narrowcasting-countdown__clock {
+    font-size: 28px; font-weight: 700; color: var(--text);
+    font-variant-numeric: tabular-nums; margin: 0;
+  }
+  .flash {
+    position: fixed; inset: 0; background: #fff; opacity: 0;
+    pointer-events: none; z-index: 999;
+  }
+  .flash.active { animation: flashAnim .5s ease; }
+  @keyframes flashAnim { 0% { opacity: .9; } 100% { opacity: 0; } }
+</style>
+</head>
+<body>
+
+<div class="debug-bar">
+  <div><strong>Debug/QA harness</strong> &mdash; not part of the real artis.nl page.</div>
+  <div>Fake time: <code id="dbg-now">--:--:--</code></div>
+  <div>Next reload in: <code id="dbg-reload">--</code></div>
+  <div>Fix delay: <code id="dbg-fixdelay">--</code>s</div>
+  <div>Params: <code>?fakeNow=13:59:50&amp;timeScale=10&amp;fixDelay=3</code></div>
+</div>
+
+<div class="c-narrowcasting-countdown c-narrowcasting narrowcasting--portrait narrowcasting-countdown--less-than-hour"
+     data-date="2026-07-07" js-hook-narrowcasting-countdown>
+
+  <div class="narrowcasting-countdown__highlight" js-hook-narrowcasting-countdown-highlight data-starttime="11:00">
+    <p class="narrowcasting-countdown__caption">
+      <span class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold">Over</span>
+      <span class="narrowcasting-countdown__time" js-hook-narrowcasting-countdown-timer>11:00</span>
+      <span>Minuten</span>
+      <span class="narrowcasting-countdown__caption--bold">Begint</span>
+    </p>
+    <h2 class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold narrowcasting-countdown__title">Planeet Sok</h2>
+    <ul class="narrowcasting-countdown__tags">
+      <li class="narrowcasting-countdown__tag-item">alle leeftijden</li>
+      <li class="narrowcasting-countdown__tag-item">Nederlands</li>
+      <li class="narrowcasting-countdown__tag-item">Duur: 25 minuten</li>
+    </ul>
+    <p class="narrowcasting-countdown__description">In deze kindervoorstelling reis je in 25 minuten door de ruimte. Onderweg kom je langs de maan en sterren. Maar wat is de mooiste plek van het heelal? Kom maar kijken!</p>
+  </div>
+
+  <div class="narrowcasting-countdown__highlight" js-hook-narrowcasting-countdown-highlight data-starttime="13:00">
+    <p class="narrowcasting-countdown__caption">
+      <span class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold">Over</span>
+      <span class="narrowcasting-countdown__time" js-hook-narrowcasting-countdown-timer>13:00</span>
+      <span>Minuten</span>
+      <span class="narrowcasting-countdown__caption--bold">Begint</span>
+    </p>
+    <h2 class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold narrowcasting-countdown__title">Planeet Sok</h2>
+    <ul class="narrowcasting-countdown__tags">
+      <li class="narrowcasting-countdown__tag-item">alle leeftijden</li>
+      <li class="narrowcasting-countdown__tag-item">Nederlands</li>
+      <li class="narrowcasting-countdown__tag-item">Duur: 25 minuten</li>
+    </ul>
+    <p class="narrowcasting-countdown__description">In deze kindervoorstelling reis je in 25 minuten door de ruimte. Onderweg kom je langs de maan en sterren. Maar wat is de mooiste plek van het heelal? Kom maar kijken!</p>
+  </div>
+
+  <div class="narrowcasting-countdown__highlight" js-hook-narrowcasting-countdown-highlight data-starttime="14:00">
+    <p class="narrowcasting-countdown__caption">
+      <span class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold">Over</span>
+      <span class="narrowcasting-countdown__time" js-hook-narrowcasting-countdown-timer>14:00</span>
+      <span>Minuten</span>
+      <span class="narrowcasting-countdown__caption--bold">Begint</span>
+    </p>
+    <h2 class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold narrowcasting-countdown__title">Live: Expeditie Zonnestelsel</h2>
+    <ul class="narrowcasting-countdown__tags">
+      <li class="narrowcasting-countdown__tag-item">vanaf 2 jaar</li>
+      <li class="narrowcasting-countdown__tag-item">Nederlands gesproken</li>
+      <li class="narrowcasting-countdown__tag-item">Duur: 30 minuten</li>
+    </ul>
+    <p class="narrowcasting-countdown__description">Jonge ruimtereizigers, verzamel je! Expeditie Zonnestelsel neemt je mee op een interactieve reis langs manen, planeten en asteroïden.</p>
+  </div>
+
+  <div class="narrowcasting-countdown__highlight" js-hook-narrowcasting-countdown-highlight data-starttime="15:00">
+    <p class="narrowcasting-countdown__caption">
+      <span class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold">Over</span>
+      <span class="narrowcasting-countdown__time" js-hook-narrowcasting-countdown-timer>15:00</span>
+      <span>Minuten</span>
+      <span class="narrowcasting-countdown__caption--bold">Begint</span>
+    </p>
+    <h2 class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold narrowcasting-countdown__title">Live: Reis door het heelal</h2>
+    <ul class="narrowcasting-countdown__tags">
+      <li class="narrowcasting-countdown__tag-item">vanaf 4 jaar</li>
+      <li class="narrowcasting-countdown__tag-item">Nederlands + English</li>
+      <li class="narrowcasting-countdown__tag-item">Duur: 30 minuten</li>
+    </ul>
+    <p class="narrowcasting-countdown__description">Bekijk in het ARTIS-Planetarium onze eigen planeet van een afstand en reis mee langs de maan, planeten en verre sterren.</p>
+  </div>
+
+  <div class="narrowcasting-countdown__highlight" js-hook-narrowcasting-countdown-highlight data-starttime="16:00">
+    <p class="narrowcasting-countdown__caption">
+      <span class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold">Over</span>
+      <span class="narrowcasting-countdown__time" js-hook-narrowcasting-countdown-timer>16:00</span>
+      <span>Minuten</span>
+      <span class="narrowcasting-countdown__caption--bold">Begint</span>
+    </p>
+    <h2 class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold narrowcasting-countdown__title">Netwerk Aarde</h2>
+    <ul class="narrowcasting-countdown__tags">
+      <li class="narrowcasting-countdown__tag-item">vanaf 8 jaar</li>
+      <li class="narrowcasting-countdown__tag-item">Nederlands // English</li>
+      <li class="narrowcasting-countdown__tag-item">Duur: 30 minuten</li>
+    </ul>
+    <p class="narrowcasting-countdown__description">Ontdek wat het betekent om te leven in een wereld waarin alles met elkaar verbonden is.</p>
+  </div>
+
+  <div class="narrowcasting-countdown__highlight" js-hook-narrowcasting-countdown-highlight data-starttime="17:00">
+    <p class="narrowcasting-countdown__caption">
+      <span class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold">Over</span>
+      <span class="narrowcasting-countdown__time" js-hook-narrowcasting-countdown-timer>17:00</span>
+      <span>Minuten</span>
+      <span class="narrowcasting-countdown__caption--bold">Begint</span>
+    </p>
+    <h2 class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold narrowcasting-countdown__title">Tekens van leven</h2>
+    <ul class="narrowcasting-countdown__tags">
+      <li class="narrowcasting-countdown__tag-item">vanaf 9 jaar</li>
+      <li class="narrowcasting-countdown__tag-item">Nederlands, English available</li>
+      <li class="narrowcasting-countdown__tag-item">Duur: 30 minuten</li>
+    </ul>
+    <p class="narrowcasting-countdown__description">Ga in de nieuwste Planetariumvoorstelling op zoek naar herkenbare sporen van leven elders in het heelal.</p>
+  </div>
+
+  <div class="narrowcasting-countdown__empty narrowcasting-countdown__empty--is-hidden" js-hook-narrowcasting-countdown-empty>
+    <h2 class="narrowcasting-countdown__caption narrowcasting-countdown__caption--bold narrowcasting-countdown__title">
+      De shows in het Planetarium zijn afgelopen voor vandaag.
+    </h2>
+  </div>
+
+  <div class="narrowcasting-countdown__other">
+    <ul class="narrowcasting-countdown__list">
+      <li class="narrowcasting-countdown__list-item" js-hook-narrowcasting-countdown-event data-starttime="13:00">
+        <span class="narrowcasting-countdown__list-item-time">13:00</span>
+        <div>
+          <h2 class="narrowcasting-countdown__list-item-title">Planeet Sok</h2>
+          <p class="narrowcasting-countdown__list-item-description">Kindervoorstelling door de ruimte.</p>
+        </div>
+      </li>
+      <li class="narrowcasting-countdown__list-item" js-hook-narrowcasting-countdown-event data-starttime="14:00">
+        <span class="narrowcasting-countdown__list-item-time">14:00</span>
+        <div>
+          <h2 class="narrowcasting-countdown__list-item-title">Live: Expeditie Zonnestelsel</h2>
+          <p class="narrowcasting-countdown__list-item-description">Interactieve reis langs manen en planeten.</p>
+        </div>
+      </li>
+      <li class="narrowcasting-countdown__list-item" js-hook-narrowcasting-countdown-event data-starttime="15:00">
+        <span class="narrowcasting-countdown__list-item-time">15:00</span>
+        <div>
+          <h2 class="narrowcasting-countdown__list-item-title">Live: Reis door het heelal</h2>
+          <p class="narrowcasting-countdown__list-item-description">Reis langs de maan, planeten en verre sterren.</p>
+        </div>
+      </li>
+      <li class="narrowcasting-countdown__list-item" js-hook-narrowcasting-countdown-event data-starttime="16:00">
+        <span class="narrowcasting-countdown__list-item-time">16:00</span>
+        <div>
+          <h2 class="narrowcasting-countdown__list-item-title">Netwerk Aarde</h2>
+          <p class="narrowcasting-countdown__list-item-description">Alles is met elkaar verbonden.</p>
+        </div>
+      </li>
+      <li class="narrowcasting-countdown__list-item" js-hook-narrowcasting-countdown-event data-starttime="17:00">
+        <span class="narrowcasting-countdown__list-item-time">17:00</span>
+        <div>
+          <h2 class="narrowcasting-countdown__list-item-title">Tekens van leven</h2>
+          <p class="narrowcasting-countdown__list-item-description">Sporen van leven elders in het heelal.</p>
+        </div>
+      </li>
+    </ul>
+    <p class="narrowcasting-countdown__clock" js-hook-narrowcasting-countdown-clock>--:--</p>
+  </div>
+</div>
+
+<div class="flash" id="flash"></div>
+<script src="countdown.js"></script>
+</body>
+</html>
