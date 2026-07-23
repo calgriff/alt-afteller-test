@@ -4,10 +4,13 @@
 <meta charset="UTF-8">
 <title>Afteller | ARTIS Planetarium</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&display=swap" rel="stylesheet">
 <style>
+  /* Omnes — bundled locally in ./fonts (see README) */
+  @font-face { font-family: "Omnes"; src: url("fonts/Omnes-Light.otf") format("opentype"); font-weight: 100 300; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Omnes"; src: url("fonts/Omnes-Regular.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Omnes"; src: url("fonts/Omnes-Medium.otf") format("opentype"); font-weight: 500; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Omnes"; src: url("fonts/Omnes-Semibold.otf") format("opentype"); font-weight: 600 900; font-style: normal; font-display: swap; }
+
   :root {
     --bg: #060b18;
     --text: #ffffff;
@@ -19,7 +22,7 @@
   html, body {
     margin: 0; padding: 0; height: 100%;
     background: var(--bg); color: var(--text);
-    font-family: "Archivo", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: "Omnes", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
   body { overflow: hidden; }
 
@@ -31,27 +34,32 @@
 
   /* ---- highlighted (next) show ---------------------------------------- */
   .narrowcasting-countdown__highlight { display: none; }
-  .narrowcasting-countdown__highlight:not(.narrowcasting-countdown__highlight--is-hidden) { display: block; }
+  /* Equal vertical rhythm between the stacked lines (Over / time / minuten /
+     begint / title / info) is handled by a single flex gap. */
+  .narrowcasting-countdown__highlight:not(.narrowcasting-countdown__highlight--is-hidden) {
+    display: flex; flex-direction: column; gap: 2.8rem;
+  }
 
   .highlight__over {
     margin: 0;
-    font-size: 11.5rem; font-weight: 700;
+    font-size: 11.5rem; font-weight: 300;
     text-transform: uppercase; line-height: 1.05;
     letter-spacing: .005em;
   }
   .highlight__time {
-    margin: 4.5rem 0 6rem -0.4rem;
+    margin: 0 0 0 -0.4rem;
     font-size: 25.5rem; font-weight: 200;
     line-height: 1.05;
     font-variant-numeric: tabular-nums;
-    letter-spacing: .2em;
+    letter-spacing: .06em;
     white-space: nowrap;
   }
   /* countdown longer than an hour renders HH:MM:SS — shrink so it fits */
   .narrowcasting-countdown__highlight:not(.narrowcasting-countdown--less-than-hour) .highlight__time {
-    font-size: 16rem; letter-spacing: .1em;
+    font-size: 16rem; letter-spacing: .05em;
   }
-  .highlight__minuten {
+  .highlight__minuten,
+  .highlight__begint {
     margin: 0;
     font-size: 11rem; font-weight: 300;
     text-transform: uppercase; line-height: 1.15;
@@ -64,9 +72,13 @@
     letter-spacing: .01em;
     overflow-wrap: anywhere;
   }
+  /* title -> info separator */
+  .highlight__info {
+    border-top: .3rem solid var(--text);
+    padding-top: 2.8rem;
+  }
   .highlight__meta {
     display: flex; justify-content: space-between; gap: 2rem;
-    margin-top: 1.4rem;
     font-size: 1.8rem; font-weight: 600;
     letter-spacing: .22em; text-transform: uppercase;
     white-space: nowrap;
@@ -81,11 +93,20 @@
 
   /* ---- empty state ----------------------------------------------------- */
   .narrowcasting-countdown__empty { display: none; }
-  .narrowcasting-countdown__empty:not(.narrowcasting-countdown__empty--is-hidden) { display: block; }
+  .narrowcasting-countdown__empty:not(.narrowcasting-countdown__empty--is-hidden) {
+    display: flex; flex-direction: column; gap: 9rem; margin-top: 4rem;
+  }
   .narrowcasting-countdown__empty h2 {
     margin: 0;
-    font-size: 7.5rem; font-weight: 700;
+    font-size: 8.8rem; font-weight: 700;
     text-transform: uppercase; line-height: 1.15;
+    letter-spacing: .005em;
+  }
+  .narrowcasting-countdown__empty .empty__en { font-weight: 300; }
+  .empty__divider {
+    height: .6rem;
+    background-image: repeating-linear-gradient(90deg,
+      var(--text) 0 1.5rem, transparent 1.5rem 2.5rem);
   }
 
   /* ---- bottom cluster: divider / upcoming list / clock ------------------ */
@@ -176,6 +197,8 @@
 
   <div class="narrowcasting-countdown__empty narrowcasting-countdown__empty--is-hidden" js-hook-narrowcasting-countdown-empty>
     <h2>De shows in het Planetarium zijn afgelopen voor vandaag.</h2>
+    <div class="empty__divider"></div>
+    <h2 class="empty__en">The Planetarium shows have finished for today.</h2>
   </div>
 
   <div class="countdown__spacer"></div>
