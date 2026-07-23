@@ -2,9 +2,14 @@ name: Update ARTIS schedule
 
 on:
   schedule:
-    # every 30 minutes — GitHub Actions cron runs in UTC; adjust if you
-    # want it tighter around opening hours (09:00–18:00 Europe/Amsterdam)
-    - cron: "*/30 * * * *"
+    # Run at :30 past the hour, 08:30-17:30 Europe/Amsterdam.
+    # GitHub Actions cron always runs in UTC, and Amsterdam's UTC offset
+    # changes with daylight saving (CET = UTC+1, CEST = UTC+2), so this is
+    # split into two rules to keep the local time correct across the year.
+    # Each will be off by 1 hour for the few days between the actual DST
+    # switch and these month boundaries, which is harmless here.
+    - cron: "30 6-15 * 4-9 *"     # Apr-Sep (CEST, UTC+2) -> 08:30-17:30 local
+    - cron: "30 7-16 * 1-3,10-12 *" # Oct-Mar (CET, UTC+1) -> 08:30-17:30 local
   workflow_dispatch: {} # lets you trigger it manually from the Actions tab
 
 permissions:
