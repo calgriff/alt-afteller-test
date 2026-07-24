@@ -169,7 +169,6 @@
                 <p class="event__time">${starttime}</p>
                 <div class="event__body">
                   <h2 class="event__title">${displayTitle}</h2>
-                  ${description ? `<p class="event__description">${description}</p>` : ""}
                 </div>
               </li>`);
         });

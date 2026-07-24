@@ -42,7 +42,7 @@
 
   .highlight__over {
     margin: 0;
-    font-size: 11.5rem; font-weight: 300;
+    font-size: 11.5rem; font-weight: 700;
     text-transform: uppercase; line-height: 1.05;
     letter-spacing: .005em;
   }
@@ -65,6 +65,7 @@
     text-transform: uppercase; line-height: 1.15;
     letter-spacing: .005em;
   }
+  .highlight__minuten { font-weight: 700; }
   .highlight__title {
     margin: 0;
     font-size: 12rem; font-weight: 700;
@@ -118,6 +119,20 @@
       var(--text) 0 1.5rem, transparent 1.5rem 2.5rem);
     margin-bottom: 2.8rem;
   }
+  /* Sits right after the highlighted show's description, ahead of the
+     flexible gap before the upcoming-shows list — separate from
+     .countdown__divider above, which stays pinned above the clock. */
+  .highlight-divider {
+    height: .6rem;
+    background-image: repeating-linear-gradient(90deg,
+      var(--text) 0 1.5rem, transparent 1.5rem 2.5rem);
+    margin-top: 2.8rem;
+  }
+  .countdown--is-empty .highlight-divider { display: none; }
+  /* .countdown__divider only earns its keep in the empty state (pinned
+     above the clock, per "dotted line over the clock at all times") —
+     otherwise .highlight-divider already separates description from list. */
+  .c-narrowcasting-countdown:not(.countdown--is-empty) .countdown__divider { display: none; }
   .countdown--is-empty .narrowcasting-countdown__list { display: none; }
 
   .narrowcasting-countdown__list { list-style: none; margin: 0; padding: 0; }
@@ -139,17 +154,11 @@
     text-transform: uppercase; line-height: 1.05;
     letter-spacing: .005em;
   }
-  .event__description {
-    margin: .6rem 0 0;
-    font-size: 1.9rem; font-weight: 400;
-    line-height: 1.4;
-    text-align: center;
-  }
 
   .narrowcasting-countdown__clock {
     margin: 1.5rem 0 0;
     align-self: center;
-    font-size: 3.8rem; font-weight: 500;
+    font-size: 6.5rem; font-weight: 500;
     font-variant-numeric: tabular-nums;
   }
 
@@ -193,6 +202,8 @@
       js-hook-narrowcasting-countdown>
 
   <div id="highlights-container"></div>
+
+  <div class="highlight-divider"></div>
 
   <div class="narrowcasting-countdown__empty narrowcasting-countdown__empty--is-hidden" js-hook-narrowcasting-countdown-empty>
     <h2>De shows in het Planetarium zijn afgelopen voor vandaag.</h2>

@@ -1,23 +1,36 @@
 {
-  "_readme": "Optional presentation data per show. Keys are the scraped English title WITHOUT the language suffix, matched case-insensitively ('Habitat Earth (EN)' matches key 'Habitat Earth'). All fields are optional: displayTitle (Dutch title shown on screen), description (shown under the countdown and under the next-show listing), age (e.g. 'Vanaf 8 jaar'). Unknown shows fall back to the scraped title with no description. Edit freely — the page reloads hourly, so changes appear within the hour (or immediately on refresh).",
+  "_readme": "Optional presentation data per show. Keys are the scraped English title WITHOUT the language suffix, matched case-insensitively ('Habitat Earth (EN)' matches key 'Habitat Earth'). All fields are optional: displayTitle (Dutch title shown on screen), description (Dutch, shown under the countdown and under the next-show listing), descriptionEn (English, not currently displayed on screen but kept for reference/future bilingual use), age (e.g. 'Vanaf 8 jaar'). Unknown shows fall back to the scraped title with no description. Edit freely — the page reloads hourly, so changes appear within the hour (or immediately on refresh). Descriptions sourced from each show's own page on artis.nl.",
 
   "Habitat Earth": {
     "displayTitle": "Netwerk Aarde",
     "age": "Vanaf 8 jaar",
-    "description": "Ontdek wat het betekent om te leven in een wereld waarin alles met elkaar verbonden is, van de allerkleinste organismen in de bodem tot de grootste walvissen."
+    "description": "Ontdek wat het betekent om te leven in een wereld waarin alles met elkaar verbonden is, van de allerkleinste organismen in de bodem tot de grootste walvissen.",
+    "descriptionEn": "Discover what it means to live in a world where everything is connected, from the tiniest organisms in the soil to the largest whales."
   },
   "Living Worlds": {
     "displayTitle": "Tekens van Leven",
     "age": "Vanaf 8 jaar",
-    "description": "Ga in de nieuwste Planetariumvoorstelling op zoek naar herkenbare sporen van leven elders in het heelal."
+    "description": "Ga in de nieuwste Planetariumvoorstelling op zoek naar herkenbare sporen van leven elders in het heelal.",
+    "descriptionEn": "Come find out what the recognisable signs of life elsewhere in the galaxy are, in our newest Planetarium show."
   },
   "Planeet Sok": {
-    "age": "Vanaf 4 jaar"
+    "age": "Vanaf 4 jaar",
+    "description": "In deze kindervoorstelling reis je in 25 minuten door de ruimte. Onderweg kom je langs de maan en sterren. Maar wat is de mooiste plek van het heelal? Kom maar kijken!",
+    "descriptionEn": "In this children's show, you will travel through space in 25 minutes. Along the way, you'll pass the moon and stars. But what is the most beautiful place in the universe? Come and see!"
+  },
+  "Live: Universal Water": {
+    "displayTitle": "Live: Water in het Heelal",
+    "description": "Duik in het heelal in het ARTIS-Planetarium. Ga op zoek naar water in het zonnestelsel en daar voorbij, en kom er achter of onze blauwe planeet de enige plek is waar je rond kan plonsen!",
+    "descriptionEn": "Dive into space in the ARTIS-Planetarium. Go on a search for water in the solar system and far beyond, and discover if our blue marble is the only place you can splash around!"
   },
   "Live: Expedition Solar System": {
-    "displayTitle": "Live: Expeditie zonnestelsel"
+    "displayTitle": "Live: Expeditie zonnestelsel",
+    "description": "Jonge ruimtereizigers, verzamel je! Expeditie Zonnestelsel neemt je mee op een interactieve reis langs manen, planeten en asteroïden. Help mee de koers door de ruimte te bepalen en kom er achter wat onze aarde zo bijzonder maakt.",
+    "descriptionEn": "Young space travellers, gather round! Expedition Solar System takes you on an interactive journey past moons, planets and asteroids. Help set the course through space and find out what makes our Earth so special."
   },
   "Live: Journey Through the Universe": {
-    "displayTitle": "Live: Reis door het heelal"
+    "displayTitle": "Live: Reis door het heelal",
+    "description": "Bekijk in het ARTIS-Planetarium onze eigen planeet van een afstand en reis mee langs de maan, planeten en verre sterren. Je verlaat ons eigen sterrenstelsel, de Melkweg, en ziet wat in al die oneindigheid onze aarde nou zo bijzonder maakt.",
+    "descriptionEn": "At the ARTIS Planetarium, see our own planet from a distance and travel along the moon, planets and distant stars. You will leave our own galaxy, the Milky Way, and see what, in all its infinity, makes our Earth so special."
   }
 }
