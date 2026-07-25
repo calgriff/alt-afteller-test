@@ -1,6 +1,6 @@
 {
   "date": "2026-07-25",
-  "generatedAt": "2026-07-24T23:30:37.428Z",
+  "generatedAt": "2026-07-25T00:00:45.769Z",
   "source": "https://www.artis.nl/en/artis-zoo/daily-schedule",
   "shows": [
     {
@@ -9,7 +9,7 @@
       "endtime": "11:25"
     },
     {
-      "title": "Live: Universal Water",
+      "title": "Live: Journey Through the Universe (NL+EN)",
       "starttime": "12:00",
       "endtime": "12:30"
     },
@@ -24,19 +24,39 @@
       "endtime": "14:30"
     },
     {
-      "title": "Live: Journey Through the Universe (NL+EN)",
+      "title": "Live: Universal Water",
       "starttime": "15:00",
       "endtime": "15:30"
     },
     {
-      "title": "Habitat Earth (EN)",
+      "title": "Our Story with Sir David Attenborough",
       "starttime": "16:00",
-      "endtime": "16:30"
+      "endtime": "16:45"
     },
     {
       "title": "Living Worlds (EN)",
       "starttime": "17:00",
       "endtime": "17:30"
+    },
+    {
+      "title": "Live: Expedition Solar System (NL)",
+      "starttime": "18:00",
+      "endtime": "18:30"
+    },
+    {
+      "title": "Live: Universal Water",
+      "starttime": "19:00",
+      "endtime": "19:30"
+    },
+    {
+      "title": "Our Story with Sir David Attenborough",
+      "starttime": "20:00",
+      "endtime": "20:45"
+    },
+    {
+      "title": "Live: Journey Through the Universe (NL+EN)",
+      "starttime": "21:00",
+      "endtime": "21:30"
     }
   ]
 }
