@@ -1,6 +1,6 @@
 {
   "date": "2026-07-27",
-  "generatedAt": "2026-07-26T23:30:38.919Z",
+  "generatedAt": "2026-07-27T00:00:47.351Z",
   "source": "https://www.artis.nl/en/artis-zoo/daily-schedule",
   "shows": [
     {
@@ -9,7 +9,7 @@
       "endtime": "11:25"
     },
     {
-      "title": "Living Worlds (EN)",
+      "title": "Live: Universal Water",
       "starttime": "12:00",
       "endtime": "12:30"
     },
@@ -24,17 +24,17 @@
       "endtime": "14:30"
     },
     {
-      "title": "Live: Universal Water",
+      "title": "Live: Journey Through the Universe (NL+EN)",
       "starttime": "15:00",
       "endtime": "15:30"
     },
     {
-      "title": "Planeet Sok (NL)",
+      "title": "Habitat Earth (EN)",
       "starttime": "16:00",
       "endtime": "16:30"
     },
     {
-      "title": "Live: Journey Through the Universe (NL+EN)",
+      "title": "Living Worlds (EN)",
       "starttime": "17:00",
       "endtime": "17:30"
     }
