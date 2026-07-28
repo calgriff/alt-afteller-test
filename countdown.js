@@ -28,6 +28,7 @@
     const MINUTE = 60 * SECOND;
     const ZERO = "00:00";
     const HOLD_MS = 2 * MINUTE; // how long "00:00" stays up after a show starts
+    const DEFAULT_LANGUAGE = "Nederlands & English";
 
     const LESS_THAN_HOUR_CLASS = "narrowcasting-countdown--less-than-hour";
     const HIDDEN_HIGHLIGHT_CLASS = "narrowcasting-countdown__highlight--is-hidden";
@@ -111,18 +112,12 @@
             .replace(/"/g, "&quot;");
     }
 
-    // "Habitat Earth (EN)" -> { title: "Habitat Earth", language: "English" }
-    // The Dutch schedule page carries no suffix, so this usually returns an
-    // empty language and show-info.json's `language` field fills it in.
-    function splitLanguage(rawTitle) {
+    // "Habitat Earth (EN)" -> "Habitat Earth". The Dutch schedule page carries
+    // no suffix today, but strip one if ARTIS ever adds it so the title still
+    // matches its show-info.json key.
+    function stripLanguageSuffix(rawTitle) {
         const m = rawTitle.match(/\s*\(\s*(NL\s*\+\s*EN|EN\s*\+\s*NL|NL\s*\/\s*EN|NL|EN)\s*\)\s*$/i);
-        if (!m) return { title: rawTitle.trim(), language: "" };
-        const code = m[1].replace(/\s+/g, "").toUpperCase();
-        const language =
-            code === "NL" ? "Nederlands" :
-            code === "EN" ? "English" :
-            "Nederlands // English";
-        return { title: rawTitle.slice(0, m.index).trim(), language };
+        return m ? rawTitle.slice(0, m.index).trim() : rawTitle.trim();
     }
 
     function durationMinutes(starttime, endtime) {
@@ -139,9 +134,13 @@
         if (!highlightsContainer || !listContainer) return;
 
         (schedule.shows || []).forEach((show) => {
-            const { title: cleanTitle, language: suffixLanguage } = splitLanguage(show.title || "");
+            const cleanTitle = stripLanguageSuffix(show.title || "");
             const info = infoMap[cleanTitle.toLowerCase()] || {};
-            const language = suffixLanguage || info.language || "";
+            // Language is stated per show in show-info.json, never derived from
+            // the scraped title — the page's own language tagging is unreliable.
+            // Nearly every Planetarium show is bilingual, so that's the default;
+            // set "language": "" on a show to hide the line entirely.
+            const language = info.language !== undefined ? info.language : DEFAULT_LANGUAGE;
             const displayTitle = escapeHtml(info.displayTitle || cleanTitle);
             const description = escapeHtml(info.description || "");
             const descriptionEn = escapeHtml(info.descriptionEn || "");

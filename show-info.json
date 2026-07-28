@@ -1,15 +1,15 @@
 {
-  "_readme": "Optional presentation data per show. Keys are the scraped DUTCH title as it appears on https://www.artis.nl/nl/artis-park/dagagenda?activity=show, matched case-insensitively ('Tekens van leven' matches key 'Tekens van Leven'). All fields are optional: displayTitle (overrides the scraped title on screen), description (Dutch, shown under the countdown), descriptionEn (English, shown under the Dutch description below a dotted line), language (shown in the meta row — the Dutch page carries no '(NL)'/'(EN)' suffix, so it has to be stated here), age (e.g. 'Vanaf 8 jaar'). Unknown shows fall back to the scraped title with no description. Edit freely — the page reloads hourly, so changes appear within the hour (or immediately on refresh). Descriptions sourced from each show's own page on artis.nl, Dutch and English versions.",
+  "_readme": "Optional presentation data per show. Keys are the scraped DUTCH title as it appears on https://www.artis.nl/nl/artis-park/dagagenda?activity=show, matched case-insensitively ('Tekens van leven' matches key 'Tekens van Leven'). All fields are optional: displayTitle (overrides the scraped title on screen), description (Dutch, shown under the countdown), descriptionEn (English, shown under the Dutch description below a dotted line), language (shown in the meta row), age (e.g. 'Vanaf 8 jaar'). Language is stated here by hand and never read from the scraped title — the page's own '(NL)'/'(EN)' tagging is unreliable. A show with no language field falls back to 'Nederlands & English', which is true of nearly every Planetarium show; set \"language\": \"\" to hide the line. Unknown shows fall back to the scraped title with no description. Edit freely — the page reloads hourly, so changes appear within the hour (or immediately on refresh). Descriptions sourced from each show's own page on artis.nl, Dutch and English versions.",
 
   "Netwerk Aarde": {
     "age": "Vanaf 8 jaar",
-    "language": "English",
+    "language": "Nederlands & English",
     "description": "Ontdek wat het betekent om te leven in een wereld waarin alles met elkaar verbonden is, van de allerkleinste organismen in de bodem tot de grootste walvissen.",
     "descriptionEn": "Discover what it means to live in a world where everything is connected, from the tiniest organisms in the soil to the largest whales."
   },
   "Tekens van leven": {
     "age": "Vanaf 8 jaar",
-    "language": "English",
+    "language": "Nederlands & English",
     "description": "Ga in de nieuwste Planetariumvoorstelling op zoek naar herkenbare sporen van leven elders in het heelal.",
     "descriptionEn": "Come find out what the recognisable signs of life elsewhere in the galaxy are, in our newest Planetarium show."
   },
@@ -20,17 +20,24 @@
     "descriptionEn": "In this children's show, you will travel through space in 25 minutes. Along the way, you'll pass the moon and stars. But what is the most beautiful place in the universe? Come and see!"
   },
   "Live: Water in het Heelal": {
+    "language": "Nederlands & English",
     "description": "Duik in het heelal in het ARTIS-Planetarium. Ga op zoek naar water in het zonnestelsel en daar voorbij, en kom er achter of onze blauwe planeet de enige plek is waar je rond kan plonsen!",
     "descriptionEn": "Dive into space in the ARTIS-Planetarium. Go on a search for water in the solar system and far beyond, and discover if our blue marble is the only place you can splash around!"
   },
   "Live: Expeditie Zonnestelsel": {
-    "language": "Nederlands",
+    "language": "Nederlands & English",
     "description": "Jonge ruimtereizigers, verzamel je! Expeditie Zonnestelsel neemt je mee op een interactieve reis langs manen, planeten en asteroïden. Help mee de koers door de ruimte te bepalen en kom er achter wat onze aarde zo bijzonder maakt.",
     "descriptionEn": "Young space travellers, gather round! Expedition Solar System takes you on an interactive journey past moons, planets and asteroids. Help set the course through space and find out what makes our Earth so special."
   },
   "Live: Reis door het heelal": {
-    "language": "Nederlands // English",
+    "language": "Nederlands & English",
     "description": "Bekijk in het ARTIS-Planetarium onze eigen planeet van een afstand en reis mee langs de maan, planeten en verre sterren. Je verlaat ons eigen sterrenstelsel, de Melkweg, en ziet wat in al die oneindigheid onze aarde nou zo bijzonder maakt.",
     "descriptionEn": "At the ARTIS Planetarium, see our own planet from a distance and travel along the moon, planets and distant stars. You will leave our own galaxy, the Milky Way, and see what, in all its infinity, makes our Earth so special."
+  },
+  "Our Story met Sir David Attenborough": {
+    "displayTitle": "Our Story",
+    "language": "English",
+    "description": "In de adembenemende immersieve filmervaring Our Story neemt Sir David Attenborough je mee door het vier miljard jaar oude verhaal van de aarde en het veel kortere verhaal van de mens. In het ARTIS-Planetarium beleef je een volledige 360°-ervaring waarin mens en planeet centraal staan.",
+    "descriptionEn": "In the immersive experience Sir David Attenborough takes you through the four-billion-year-old story of the Earth and the much shorter story of man. The 360° experience in the ARTIS-Planetarium is about people and planet."
   }
 }
