@@ -91,6 +91,14 @@
     line-height: 1.6;
     letter-spacing: .01em;
   }
+  /* dotted rule separating the Dutch description from the English one */
+  .description__divider {
+    height: .6rem;
+    margin-top: 3rem;
+    background-image: repeating-linear-gradient(90deg,
+      var(--text) 0 1.5rem, transparent 1.5rem 2.5rem);
+  }
+  .highlight__description--en { font-weight: 300; }
 
   /* ---- empty state ----------------------------------------------------- */
   .narrowcasting-countdown__empty { display: none; }
@@ -113,26 +121,13 @@
   /* ---- bottom cluster: divider / upcoming list / clock ------------------ */
   .countdown__spacer { flex: 1; }
 
-  .countdown__divider {
-    height: .6rem;
-    background-image: repeating-linear-gradient(90deg,
-      var(--text) 0 1.5rem, transparent 1.5rem 2.5rem);
-    margin-bottom: 2.8rem;
-  }
-  /* Sits right after the highlighted show's description, ahead of the
-     flexible gap before the upcoming-shows list — separate from
-     .countdown__divider above, which stays pinned above the clock. */
+  /* Closes off the highlighted show below its English description, matching
+     the solid rule that opens .highlight__info below the title. */
   .highlight-divider {
-    height: .6rem;
-    background-image: repeating-linear-gradient(90deg,
-      var(--text) 0 1.5rem, transparent 1.5rem 2.5rem);
+    border-top: .3rem solid var(--text);
     margin-top: 2.8rem;
   }
   .countdown--is-empty .highlight-divider { display: none; }
-  /* .countdown__divider only earns its keep in the empty state (pinned
-     above the clock, per "dotted line over the clock at all times") —
-     otherwise .highlight-divider already separates description from list. */
-  .c-narrowcasting-countdown:not(.countdown--is-empty) .countdown__divider { display: none; }
   .countdown--is-empty .narrowcasting-countdown__list { display: none; }
 
   .narrowcasting-countdown__list { list-style: none; margin: 0; padding: 0; }
@@ -140,7 +135,8 @@
     display: flex; align-items: flex-start; gap: 5rem;
     margin-bottom: 2.5rem;
   }
-  .event--is-hidden { display: none; }
+  .event--is-hidden,
+  .event--is-clipped { display: none; }
   .event__time {
     margin: 0;
     font-size: 5rem; font-weight: 700;
@@ -212,8 +208,6 @@
   </div>
 
   <div class="countdown__spacer"></div>
-
-  <div class="countdown__divider"></div>
 
   <ul class="narrowcasting-countdown__list" id="list-container"></ul>
 

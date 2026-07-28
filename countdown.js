@@ -33,6 +33,7 @@
     const HIDDEN_HIGHLIGHT_CLASS = "narrowcasting-countdown__highlight--is-hidden";
     const HIDDEN_EMPTY_CLASS = "narrowcasting-countdown__empty--is-hidden";
     const HIDDEN_EVENT_CLASS = "event--is-hidden";
+    const CLIPPED_EVENT_CLASS = "event--is-clipped";
     const EMPTY_STATE_CLASS = "countdown--is-empty";
 
     // ---------------------------------------------------------------------
@@ -111,6 +112,8 @@
     }
 
     // "Habitat Earth (EN)" -> { title: "Habitat Earth", language: "English" }
+    // The Dutch schedule page carries no suffix, so this usually returns an
+    // empty language and show-info.json's `language` field fills it in.
     function splitLanguage(rawTitle) {
         const m = rawTitle.match(/\s*\(\s*(NL\s*\+\s*EN|EN\s*\+\s*NL|NL\s*\/\s*EN|NL|EN)\s*\)\s*$/i);
         if (!m) return { title: rawTitle.trim(), language: "" };
@@ -136,10 +139,12 @@
         if (!highlightsContainer || !listContainer) return;
 
         (schedule.shows || []).forEach((show) => {
-            const { title: cleanTitle, language } = splitLanguage(show.title || "");
+            const { title: cleanTitle, language: suffixLanguage } = splitLanguage(show.title || "");
             const info = infoMap[cleanTitle.toLowerCase()] || {};
+            const language = suffixLanguage || info.language || "";
             const displayTitle = escapeHtml(info.displayTitle || cleanTitle);
             const description = escapeHtml(info.description || "");
+            const descriptionEn = escapeHtml(info.descriptionEn || "");
             const age = escapeHtml(info.age || "");
             const mins = durationMinutes(show.starttime, show.endtime);
             const starttime = escapeHtml(show.starttime || "");
@@ -160,6 +165,9 @@
                 <div class="highlight__info">
                   <div class="highlight__meta">${metaParts.join("")}</div>
                   ${description ? `<p class="highlight__description">${description}</p>` : ""}
+                  ${descriptionEn ? `
+                  <div class="description__divider"></div>
+                  <p class="highlight__description highlight__description--en">${descriptionEn}</p>` : ""}
                 </div>
               </div>`);
 
@@ -273,6 +281,32 @@
                 const isActiveOrEarlier = activeStartMs !== null && startMs <= activeStartMs;
                 el.classList.toggle(HIDDEN_EVENT_CLASS, isPast || isActiveOrEarlier);
             });
+            this._fitList();
+        }
+
+        // The highlighted show carries two descriptions (Dutch + English), so
+        // early in the day — first show highlighted, six still to come — the
+        // stack no longer fits 1080x1920 and the clock gets pushed off the
+        // bottom. Drop upcoming entries from the end until it fits again.
+        // Recomputed only when the layout inputs actually change, so the
+        // once-a-second tick doesn't force a reflow every time.
+        _fitList() {
+            const visible = this.eventElements.filter((el) => !el.classList.contains(HIDDEN_EVENT_CLASS));
+            const active = this.highlightElements.find((el) => !el.classList.contains(HIDDEN_HIGHLIGHT_CLASS));
+            const signature = [
+                visible.map((el) => el.getAttribute("data-starttime")).join(","),
+                active ? active.getAttribute("data-starttime") : "",
+                active && active.classList.contains(LESS_THAN_HOUR_CLASS) ? "short" : "long",
+                window.innerHeight,
+            ].join("|");
+            if (signature === this._fitSignature) return;
+            this._fitSignature = signature;
+
+            visible.forEach((el) => el.classList.remove(CLIPPED_EVENT_CLASS));
+            for (let i = visible.length - 1; i >= 0; i--) {
+                if (this.element.scrollHeight <= this.element.clientHeight) break;
+                visible[i].classList.add(CLIPPED_EVENT_CLASS);
+            }
         }
 
         _initClock(now) {

@@ -8,9 +8,10 @@ bug — see `countdown.js` comments for the full explanation).
 **What's new in this version:** show times are no longer hardcoded. They're
 read from `schedule.json`, which a GitHub Actions workflow regenerates every
 30 minutes by scraping the public
-[ARTIS daily schedule](https://www.artis.nl/en/artis-zoo/daily-schedule)
-page and filtering it down to just the ARTIS-Planetarium **shows** (talks,
-feedings, and tours at other locations are excluded).
+[ARTIS dagagenda, filtered to voorstellingen](https://www.artis.nl/nl/artis-park/dagagenda?activity=show)
+page and filtering it down to just the ARTIS-Planetarium **voorstellingen**
+(voorstellingen at the Groote Museum or Micropia are excluded). Because this
+is the Dutch page, the scraped titles are the Dutch ones shown on screen.
 
 ## Why it's built this way (not a plain client-side fetch)
 
@@ -21,8 +22,8 @@ isn't affected by that. The flow is:
 
 ```
 GitHub Actions (every 30 min)
-  -> scrape.mjs fetches artis.nl/en/artis-zoo/daily-schedule
-  -> filters to ARTIS-Planetarium "show" entries
+  -> scrape.mjs fetches artis.nl/nl/artis-park/dagagenda?activity=show
+  -> filters to ARTIS-Planetarium "voorstelling" entries
   -> writes schedule.json
   -> commits it back to the repo
 
@@ -47,6 +48,11 @@ text — paste that back and the parser can be adjusted to match.
 - `scrape.mjs` — the scraper (run by the workflow, or manually: `node scrape.mjs`)
 - `schedule.json` — the current data; committed to the repo so the page
   works even before the first Action run
+- `show-info.json` — hand-maintained per-show extras (age, language, Dutch
+  and English descriptions), keyed on the scraped Dutch title. The English
+  description is shown under the Dutch one, separated by a dotted rule.
+  If a show ever runs out of room, the countdown drops upcoming entries
+  from the bottom of the list so the clock stays on screen.
 - `.github/workflows/update-schedule.yml` — the scheduled job
 
 ## Testing the reload-fix behaviour without waiting for a real hour

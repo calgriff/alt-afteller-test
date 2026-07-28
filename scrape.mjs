@@ -1,7 +1,14 @@
 // scrape.mjs
 // Fetches the ARTIS daily-schedule page and extracts today's ARTIS-Planetarium
-// "show" entries (filtering out ARTIS talks, feedings, tours, etc. — the page
-// lists everything happening at the zoo that day, not just the Planetarium).
+// "voorstelling" entries. The URL carries ?activity=show, which already narrows
+// the page to voorstellingen, but the parser still checks the category and the
+// ARTIS-Planetarium location tag so a Groote Museum / Micropia voorstelling
+// can't slip in.
+//
+// This is the DUTCH page, so the titles it yields are the Dutch ones shown on
+// screen ("Netwerk Aarde", not "Habitat Earth"), and — unlike the English page
+// — they carry no "(NL)" / "(EN)" language suffix. show-info.json is keyed on
+// these Dutch titles and supplies the language line per show.
 //
 // Runs under Node 20+ (has global fetch). Intended to be run by the
 // GitHub Actions workflow in .github/workflows/update-schedule.yml.
@@ -11,7 +18,7 @@
 // (the source HTML is pretty-printed with real newlines around each piece
 // of text), not all crammed onto one line — see parseSchedule below.
 
-const SOURCE_URL = "https://www.artis.nl/en/artis-zoo/daily-schedule";
+const SOURCE_URL = "https://www.artis.nl/nl/artis-park/dagagenda?activity=show";
 
 function htmlToRoughText(html) {
     return html
@@ -38,11 +45,11 @@ function htmlToRoughText(html) {
 // The live page's markup is pretty-printed with real newlines around each
 // piece of text, so each schedule item's fields land on their own separate
 // lines (verified against the actual rendered HTML), not all on one line:
-//   Planeet Sok (NL)          <- title
-//   show • gratis             <- category (+ optional bullet/tag)
+//   Planeet Sok               <- title
+//   voorstelling • gratis     <- category (+ optional bullet/tag)
 //   11.00 - 11.25             <- time range, alone on its line
 //   ARTIS-Planetarium         <- location
-const CATEGORY_RE = /^(show|ARTIS talk|activity|guided tour|special program|audio tour|workshop|lecture series|lecture|exhibition|water)\b/i;
+const CATEGORY_RE = /^(voorstelling|ARTIS vertelt|activiteit|rondleiding|speciaal programma|audiotour|workshop|collegereeks|lezing|tentoonstelling|water)\b/i;
 const TIME_RE = /^(\d{1,2})\.(\d{2})\s*-\s*(\d{1,2})\.(\d{2})$/;
 
 function parseSchedule(lines) {
@@ -55,7 +62,7 @@ function parseSchedule(lines) {
         if (!timeMatch) continue;
         const location = lines[i + 2];
         if (!location || !/planetarium/i.test(location)) continue;
-        if (!/^show$/i.test(category)) continue; // exclude "ARTIS talk" etc.
+        if (!/^voorstelling$/i.test(category)) continue; // exclude "ARTIS vertelt" etc.
 
         const title = lines[i - 1];
         if (!title || CATEGORY_RE.test(title) || TIME_RE.test(title)) continue;
