@@ -123,9 +123,12 @@
 
   /* Closes off the highlighted show below its English description, matching
      the solid rule that opens .highlight__info below the title. */
+  /* Symmetric 2.8rem either side, so the list can't butt against the rule
+     when the flexible spacer above it collapses to nothing. */
   .highlight-divider {
     border-top: .3rem solid var(--text);
     margin-top: 2.8rem;
+    margin-bottom: 2.8rem;
   }
   .countdown--is-empty .highlight-divider { display: none; }
   .countdown--is-empty .narrowcasting-countdown__list { display: none; }
