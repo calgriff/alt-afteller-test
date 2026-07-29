@@ -287,20 +287,17 @@
         // early in the day — first show highlighted, six still to come — the
         // stack no longer fits 1080x1920 and the clock gets pushed off the
         // bottom. Drop upcoming entries from the end until it fits again.
-        // Recomputed only when the layout inputs actually change, so the
-        // once-a-second tick doesn't force a reflow every time.
+        //
+        // Measured fresh on every tick rather than cached against the inputs
+        // we can name: too many things move the layout without changing any of
+        // them. The web fonts are the clearest case — schedule.json lands, the
+        // list is fitted against fallback metrics, and Omnes swaps in ~90ms
+        // later (longer over the network), leaving entries clipped that now fit
+        // and a gap under the English description. Clips are added and removed
+        // within one task, so nothing flickers, and a handful of layout reads a
+        // second is nothing next to the clock this page already repaints.
         _fitList() {
             const visible = this.eventElements.filter((el) => !el.classList.contains(HIDDEN_EVENT_CLASS));
-            const active = this.highlightElements.find((el) => !el.classList.contains(HIDDEN_HIGHLIGHT_CLASS));
-            const signature = [
-                visible.map((el) => el.getAttribute("data-starttime")).join(","),
-                active ? active.getAttribute("data-starttime") : "",
-                active && active.classList.contains(LESS_THAN_HOUR_CLASS) ? "short" : "long",
-                window.innerHeight,
-            ].join("|");
-            if (signature === this._fitSignature) return;
-            this._fitSignature = signature;
-
             visible.forEach((el) => el.classList.remove(CLIPPED_EVENT_CLASS));
             for (let i = visible.length - 1; i >= 0; i--) {
                 if (this.element.scrollHeight <= this.element.clientHeight) break;
