@@ -158,8 +158,7 @@
                    js-hook-narrowcasting-countdown-highlight data-starttime="${starttime}">
                 <p class="highlight__over">Over</p>
                 <p class="highlight__time" js-hook-narrowcasting-countdown-timer>--:--</p>
-                <p class="highlight__minuten">minuten</p>
-                <p class="highlight__begint">begint</p>
+                <p class="highlight__minuten">minuten <span class="highlight__begint">begint</span></p>
                 <h1 class="highlight__title">${displayTitle}</h1>
                 <div class="highlight__info">
                   <div class="highlight__meta">${metaParts.join("")}</div>

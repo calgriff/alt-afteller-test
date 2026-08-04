@@ -42,7 +42,7 @@
 
   .highlight__over {
     margin: 0;
-    font-size: 11.5rem; font-weight: 700;
+    font-size: 11.5rem; font-weight: 300;
     text-transform: uppercase; line-height: 1.05;
     letter-spacing: .005em;
   }
@@ -58,6 +58,13 @@
   .narrowcasting-countdown__highlight:not(.narrowcasting-countdown--less-than-hour) .highlight__time {
     font-size: 16rem; letter-spacing: .05em;
   }
+  /* "MINUTEN BEGINT" share one line: begint is a span inside the minuten
+     paragraph, so it only needs to differ in weight. Keep its font-size (and
+     the rest) stated explicitly rather than inherited — index.html and
+     countdown.js are cached independently by GitHub Pages, so a browser can
+     hold this stylesheet alongside an older countdown.js that still emits
+     begint as its own <p>. Inheriting would render that orphan at the 10px
+     default; stating it keeps the old markup rendering correctly too. */
   .highlight__minuten,
   .highlight__begint {
     margin: 0;
@@ -65,7 +72,7 @@
     text-transform: uppercase; line-height: 1.15;
     letter-spacing: .005em;
   }
-  .highlight__minuten { font-weight: 700; }
+  /* minuten now matches begint's light weight, so no override is needed. */
   .highlight__title {
     margin: 0;
     font-size: 12rem; font-weight: 700;
