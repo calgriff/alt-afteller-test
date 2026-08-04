@@ -58,15 +58,14 @@
   .narrowcasting-countdown__highlight:not(.narrowcasting-countdown--less-than-hour) .highlight__time {
     font-size: 16rem; letter-spacing: .05em;
   }
-  /* "MINUTEN BEGINT" share one line — begint inherits the size and just
-     drops back to the light weight. */
-  .highlight__minuten {
+  .highlight__minuten,
+  .highlight__begint {
     margin: 0;
-    font-size: 11rem; font-weight: 700;
+    font-size: 11rem; font-weight: 300;
     text-transform: uppercase; line-height: 1.15;
     letter-spacing: .005em;
   }
-  .highlight__begint { font-weight: 300; }
+  .highlight__minuten { font-weight: 700; }
   .highlight__title {
     margin: 0;
     font-size: 12rem; font-weight: 700;
