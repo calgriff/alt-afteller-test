@@ -1,6 +1,6 @@
 {
   "date": "2026-08-21",
-  "generatedAt": "2026-08-21T15:54:38.336Z",
+  "generatedAt": "2026-08-21T16:00:51.516Z",
   "source": "https://www.artis.nl/nl/artis-park/dagagenda?activity=show",
   "shows": [
     {
@@ -42,6 +42,21 @@
       "title": "Tekens van leven",
       "starttime": "17:00",
       "endtime": "17:30"
+    },
+    {
+      "title": "Planeet Sok",
+      "starttime": "18:30",
+      "endtime": "19:00"
+    },
+    {
+      "title": "Live: Expeditie Zonnestelsel",
+      "starttime": "19:30",
+      "endtime": "20:00"
+    },
+    {
+      "title": "Live: Reis door het heelal",
+      "starttime": "20:30",
+      "endtime": "21:00"
     }
   ]
 }
