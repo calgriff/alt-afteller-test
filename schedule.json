@@ -1,22 +1,17 @@
 {
   "date": "2026-08-22",
-  "generatedAt": "2026-08-21T23:30:42.312Z",
+  "generatedAt": "2026-08-22T00:00:50.243Z",
   "source": "https://www.artis.nl/nl/artis-park/dagagenda?activity=show",
   "shows": [
-    {
-      "title": "Gereserveerd Onderwijs",
-      "starttime": "10:15",
-      "endtime": "11:00"
-    },
     {
       "title": "Planeet Sok",
       "starttime": "11:00",
       "endtime": "11:25"
     },
     {
-      "title": "Gereserveerd Onderwijs",
+      "title": "Live: Reis door het heelal",
       "starttime": "12:00",
-      "endtime": "12:45"
+      "endtime": "12:30"
     },
     {
       "title": "Planeet Sok",
@@ -24,19 +19,19 @@
       "endtime": "13:30"
     },
     {
-      "title": "Live: Water in het Heelal",
+      "title": "Live: Expeditie Zonnestelsel",
       "starttime": "14:00",
       "endtime": "14:30"
     },
     {
-      "title": "Tekens van leven",
+      "title": "Live: Water in het Heelal",
       "starttime": "15:00",
       "endtime": "15:30"
     },
     {
-      "title": "Netwerk Aarde",
+      "title": "Our Story met Sir David Attenborough",
       "starttime": "16:00",
-      "endtime": "16:30"
+      "endtime": "16:45"
     },
     {
       "title": "Tekens van leven",
@@ -44,19 +39,24 @@
       "endtime": "17:30"
     },
     {
-      "title": "Planeet Sok",
-      "starttime": "18:30",
-      "endtime": "19:00"
+      "title": "Live: Expeditie Zonnestelsel",
+      "starttime": "18:00",
+      "endtime": "18:30"
     },
     {
-      "title": "Live: Expeditie Zonnestelsel",
-      "starttime": "19:30",
-      "endtime": "20:00"
+      "title": "Live: Water in het Heelal",
+      "starttime": "19:00",
+      "endtime": "19:30"
+    },
+    {
+      "title": "Our Story met Sir David Attenborough",
+      "starttime": "20:00",
+      "endtime": "20:45"
     },
     {
       "title": "Live: Reis door het heelal",
-      "starttime": "20:30",
-      "endtime": "21:00"
+      "starttime": "21:00",
+      "endtime": "21:30"
     }
   ]
 }
