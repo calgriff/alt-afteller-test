@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-23",
-  "generatedAt": "2026-08-23T15:42:24.949Z",
+  "date": "2026-08-24",
+  "generatedAt": "2026-08-24T06:27:23.656Z",
   "source": "https://www.artis.nl/nl/artis-park/dagagenda?activity=show",
   "shows": [
     {
@@ -11,7 +11,7 @@
     {
       "title": "Tekens van leven",
       "starttime": "12:00",
-      "endtime": "12:30"
+      "endtime": "12:45"
     },
     {
       "title": "Planeet Sok",
@@ -19,22 +19,22 @@
       "endtime": "13:30"
     },
     {
-      "title": "Live: Expeditie Zonnestelsel",
+      "title": "Live: Water in het Heelal",
       "starttime": "14:00",
       "endtime": "14:30"
     },
     {
-      "title": "Live: Water in het Heelal",
+      "title": "Tekens van leven",
       "starttime": "15:00",
       "endtime": "15:30"
     },
     {
-      "title": "Planeet Sok",
+      "title": "Netwerk Aarde",
       "starttime": "16:00",
       "endtime": "16:30"
     },
     {
-      "title": "Live: Reis door het heelal",
+      "title": "Tekens van leven",
       "starttime": "17:00",
       "endtime": "17:30"
     }
