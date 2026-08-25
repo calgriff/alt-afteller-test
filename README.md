@@ -7,7 +7,7 @@ bug — see `countdown.js` comments for the full explanation).
 
 **What's new in this version:** show times are no longer hardcoded. They're
 read from `schedule.json`, which a GitHub Actions workflow regenerates every
-30 minutes by scraping the public
+hour, around the clock, by scraping the public
 [ARTIS dagagenda, filtered to voorstellingen](https://www.artis.nl/nl/artis-park/dagagenda?activity=show)
 page and filtering it down to just the ARTIS-Planetarium **voorstellingen**
 (voorstellingen at the Groote Museum or Micropia are excluded). Because this
@@ -21,7 +21,7 @@ blocks reading the response (CORS). GitHub Actions runs server-side, so it
 isn't affected by that. The flow is:
 
 ```
-GitHub Actions (every 30 min)
+GitHub Actions (hourly, at :30, 24/7)
   -> scrape.mjs fetches artis.nl/nl/artis-park/dagagenda?activity=show
   -> filters to ARTIS-Planetarium "voorstelling" entries
   -> writes schedule.json
@@ -94,7 +94,7 @@ so you can actually watch it jump the hour boundary.
    `main`, folder `/root`, save.
 5. Go to the **Actions** tab and manually run "Update ARTIS schedule" once
    (via "Run workflow") to confirm it works and commits a fresh
-   `schedule.json`, rather than waiting up to 30 minutes for the first
+   `schedule.json`, rather than waiting up to an hour for the first
    scheduled run.
 6. Your page will be live at `https://<you>.github.io/<repo>/` shortly after.
 
