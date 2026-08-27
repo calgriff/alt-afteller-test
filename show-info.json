@@ -39,5 +39,10 @@
     "language": "English",
     "description": "In de adembenemende immersieve filmervaring Our Story neemt Sir David Attenborough je mee door het vier miljard jaar oude verhaal van de aarde en het veel kortere verhaal van de mens. In het ARTIS-Planetarium beleef je een volledige 360°-ervaring waarin mens en planeet centraal staan.",
     "descriptionEn": "In the immersive experience Sir David Attenborough takes you through the four-billion-year-old story of the Earth and the much shorter story of man. The 360° experience in the ARTIS-Planetarium is about people and planet."
+  },
+  "Gereserveerd Onderwijs": {
+    "language": "",
+    "description": "Dit tijdslot is gereserveerd voor een onderwijsboeking. Ook met je school naar ARTIS? Boek via onderwijs.artis.nl",
+    "descriptionEn": "This timeslot is reserved for a school booking. Want to take your school to ARTIS? Book via onderwijs.artis.nl"
   }
 }
