@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-27",
-  "generatedAt": "2026-08-27T11:54:20.870Z",
+  "date": "2026-08-28",
+  "generatedAt": "2026-08-27T22:30:31.866Z",
   "source": "https://www.artis.nl/nl/artis-park/dagagenda?activity=show",
   "shows": [
     {
@@ -37,6 +37,31 @@
       "title": "Tekens van leven",
       "starttime": "17:00",
       "endtime": "17:30"
+    },
+    {
+      "title": "The Earth is flat...",
+      "starttime": "20:15",
+      "endtime": "20:45"
+    },
+    {
+      "title": "The Earth is flat...",
+      "starttime": "21:00",
+      "endtime": "21:30"
+    },
+    {
+      "title": "The Earth is flat...",
+      "starttime": "21:45",
+      "endtime": "22:15"
+    },
+    {
+      "title": "The Earth is flat...",
+      "starttime": "22:30",
+      "endtime": "23:00"
+    },
+    {
+      "title": "The Earth is flat...",
+      "starttime": "23:15",
+      "endtime": "23:45"
     }
   ]
 }
