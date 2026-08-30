@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-29",
-  "generatedAt": "2026-08-29T21:54:31.057Z",
+  "date": "2026-08-30",
+  "generatedAt": "2026-08-30T00:35:39.697Z",
   "source": "https://www.artis.nl/nl/artis-park/dagagenda?activity=show",
   "shows": [
     {
@@ -9,9 +9,14 @@
       "endtime": "11:25"
     },
     {
-      "title": "Live: Reis door het heelal",
+      "title": "Tekens van leven",
       "starttime": "12:00",
       "endtime": "12:30"
+    },
+    {
+      "title": "Live: Expeditie Zonnestelsel",
+      "starttime": "13:00",
+      "endtime": "13:30"
     },
     {
       "title": "Planeet Sok",
@@ -29,34 +34,14 @@
       "endtime": "15:30"
     },
     {
-      "title": "Our Story met Sir David Attenborough",
+      "title": "Planeet Sok",
       "starttime": "16:00",
-      "endtime": "16:45"
-    },
-    {
-      "title": "Tekens van leven",
-      "starttime": "17:00",
-      "endtime": "17:30"
-    },
-    {
-      "title": "Live: Expeditie Zonnestelsel",
-      "starttime": "18:00",
-      "endtime": "18:30"
-    },
-    {
-      "title": "Live: Water in het Heelal",
-      "starttime": "19:00",
-      "endtime": "19:30"
-    },
-    {
-      "title": "Our Story met Sir David Attenborough",
-      "starttime": "20:00",
-      "endtime": "20:45"
+      "endtime": "16:30"
     },
     {
       "title": "Live: Reis door het heelal",
-      "starttime": "21:00",
-      "endtime": "21:30"
+      "starttime": "17:00",
+      "endtime": "17:30"
     }
   ]
 }
