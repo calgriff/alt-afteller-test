@@ -1,30 +1,20 @@
 {
   "date": "2026-09-05",
-  "generatedAt": "2026-09-04T22:29:06.162Z",
+  "generatedAt": "2026-09-05T00:19:59.479Z",
   "source": "https://www.artis.nl/nl/artis-park/dagagenda?activity=show",
   "shows": [
-    {
-      "title": "Gereserveerd Onderwijs",
-      "starttime": "09:15",
-      "endtime": "10:00"
-    },
-    {
-      "title": "Gereserveerd Onderwijs",
-      "starttime": "10:15",
-      "endtime": "11:00"
-    },
     {
       "title": "Planeet Sok",
       "starttime": "11:00",
       "endtime": "11:25"
     },
     {
-      "title": "Tekens van leven",
+      "title": "Live: Water in het Heelal",
       "starttime": "12:00",
       "endtime": "12:30"
     },
     {
-      "title": "Planeet Sok",
+      "title": "Live: Expeditie Zonnestelsel",
       "starttime": "13:00",
       "endtime": "13:30"
     },
@@ -34,14 +24,19 @@
       "endtime": "14:30"
     },
     {
-      "title": "Tekens van leven",
+      "title": "Live: Expeditie Zonnestelsel",
       "starttime": "15:00",
       "endtime": "15:30"
     },
     {
-      "title": "Netwerk Aarde",
+      "title": "Tekens van leven",
       "starttime": "16:00",
       "endtime": "16:30"
+    },
+    {
+      "title": "Live: Water in het Heelal",
+      "starttime": "17:00",
+      "endtime": "17:30"
     }
   ]
 }
