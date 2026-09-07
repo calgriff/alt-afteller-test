@@ -1,17 +1,17 @@
 {
   "date": "2026-09-07",
-  "generatedAt": "2026-09-07T05:06:22.726Z",
+  "generatedAt": "2026-09-07T10:39:09.172Z",
   "source": "https://www.artis.nl/nl/artis-park/dagagenda?activity=show",
   "shows": [
+    {
+      "title": "Gereserveerd Onderwijs",
+      "starttime": "10:15",
+      "endtime": "11:00"
+    },
     {
       "title": "Planeet Sok",
       "starttime": "11:00",
       "endtime": "11:25"
-    },
-    {
-      "title": "Live: Water in het Heelal",
-      "starttime": "12:00",
-      "endtime": "12:30"
     },
     {
       "title": "Tekens van leven",
