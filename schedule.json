@@ -1,6 +1,6 @@
 {
   "date": "2026-09-13",
-  "generatedAt": "2026-09-13T05:15:01.169Z",
+  "generatedAt": "2026-09-13T10:31:46.376Z",
   "source": "https://www.artis.nl/nl/artis-park/dagagenda?activity=show",
   "shows": [
     {
@@ -10,11 +10,6 @@
     },
     {
       "title": "Live: Water in het Heelal",
-      "starttime": "12:00",
-      "endtime": "12:30"
-    },
-    {
-      "title": "Tekens van leven",
       "starttime": "12:00",
       "endtime": "12:30"
     },
