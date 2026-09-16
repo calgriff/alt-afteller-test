@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-15",
-  "generatedAt": "2026-09-15T21:40:11.042Z",
+  "date": "2026-09-16",
+  "generatedAt": "2026-09-16T00:42:41.333Z",
   "source": "https://www.artis.nl/nl/artis-park/dagagenda?activity=show",
   "shows": [
     {
@@ -14,9 +14,9 @@
       "endtime": "11:00"
     },
     {
-      "title": "Planeet Sok",
-      "starttime": "11:00",
-      "endtime": "11:25"
+      "title": "Gereserveerd voor activiteit",
+      "starttime": "11:15",
+      "endtime": "12:00"
     },
     {
       "title": "Gereserveerd Onderwijs",
@@ -40,13 +40,8 @@
     },
     {
       "title": "Netwerk Aarde",
-      "starttime": "16:00",
-      "endtime": "16:30"
-    },
-    {
-      "title": "Tekens van leven",
-      "starttime": "17:00",
-      "endtime": "17:30"
+      "starttime": "15:30",
+      "endtime": "16:00"
     }
   ]
 }
