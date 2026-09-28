@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-27",
-  "generatedAt": "2026-09-27T21:31:35.033Z",
+  "date": "2026-09-28",
+  "generatedAt": "2026-09-28T01:04:11.370Z",
   "source": "https://www.artis.nl/nl/artis-park/dagagenda?activity=show",
   "shows": [
     {
@@ -11,10 +11,10 @@
     {
       "title": "Tekens van leven",
       "starttime": "12:00",
-      "endtime": "12:30"
+      "endtime": "12:45"
     },
     {
-      "title": "Live: Expeditie Zonnestelsel",
+      "title": "Planeet Sok",
       "starttime": "13:00",
       "endtime": "13:30"
     },
@@ -24,17 +24,17 @@
       "endtime": "14:30"
     },
     {
-      "title": "Live: Expeditie Zonnestelsel",
+      "title": "Tekens van leven",
       "starttime": "15:00",
       "endtime": "15:30"
     },
     {
-      "title": "Tekens van leven",
+      "title": "Netwerk Aarde",
       "starttime": "16:00",
       "endtime": "16:30"
     },
     {
-      "title": "Netwerk Aarde",
+      "title": "Tekens van leven",
       "starttime": "17:00",
       "endtime": "17:30"
     }
