@@ -1,15 +1,25 @@
 {
   "date": "2026-10-08",
-  "generatedAt": "2026-10-07T22:12:31.905Z",
+  "generatedAt": "2026-10-08T02:12:32.070Z",
   "source": "https://www.artis.nl/nl/artis-park/dagagenda?activity=show",
   "shows": [
+    {
+      "title": "Gereserveerd Onderwijs",
+      "starttime": "09:30",
+      "endtime": "10:15"
+    },
+    {
+      "title": "Gereserveerd Onderwijs",
+      "starttime": "10:15",
+      "endtime": "11:00"
+    },
     {
       "title": "Planeet Sok",
       "starttime": "11:00",
       "endtime": "11:25"
     },
     {
-      "title": "Tekens van leven",
+      "title": "Gereserveerd Onderwijs",
       "starttime": "12:00",
       "endtime": "12:45"
     },
