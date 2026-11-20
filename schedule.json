@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-19",
-  "generatedAt": "2026-11-19T22:23:13.043Z",
+  "date": "2026-11-20",
+  "generatedAt": "2026-11-20T03:40:12.149Z",
   "source": "https://www.artis.nl/nl/artis-park/dagagenda?activity=show",
   "shows": [
     {
@@ -27,11 +27,6 @@
       "title": "Netwerk Aarde",
       "starttime": "15:00",
       "endtime": "15:30"
-    },
-    {
-      "title": "Tekens van leven",
-      "starttime": "16:00",
-      "endtime": "16:30"
     }
   ]
 }
